@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TradeFin Portal – Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #102040;
+      --navy-card: #0e1e35;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --white: #ffffff;
+      --muted: #8a9ab5;
+      --input-bg: rgba(255,255,255,0.05);
+      --input-border: rgba(201,168,76,0.2);
+      --input-focus: rgba(201,168,76,0.5);
+      --error: #e05a5a;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* LEFT PANEL */
+    .left-panel {
+      background: linear-gradient(160deg, #0e1e35 0%, #0a1628 60%);
+      border-right: 1px solid rgba(201,168,76,0.12);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 3rem;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--white); }
+
+    .left-content { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 2rem 0; }
+
+    .left-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .left-content h2 em { font-style: normal; color: var(--gold); }
+
+    .left-content p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 360px;
+    }
+
+    .benefit-list { display: flex; flex-direction: column; gap: 1rem; }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      font-size: 0.86rem;
+    }
+
+    .benefit-icon {
+      width: 32px; height: 32px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .benefit-item strong {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .benefit-item span { color: var(--muted); line-height: 1.5; }
+
+    .left-footer {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .left-footer a { color: var(--gold); text-decoration: none; }
+
+    /* RIGHT PANEL */
+    .right-panel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2.5rem;
+      overflow-y: auto;
+    }
+
+    .form-box {
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .form-header { margin-bottom: 2rem; }
+
+    .form-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.85rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-header p {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .form-header p a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+    }
+
+    .form-group input,
+    .form-group select {
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 6px;
+      padding: 0.7rem 0.9rem;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form-group select { appearance: none; cursor: pointer; }
+
+    .form-group input::placeholder { color: rgba(138,154,181,0.5); }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--input-focus);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .form-group select option { background: var(--navy-mid); }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin: 1rem 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(201,168,76,0.12);
+    }
+
+    .password-wrap { position: relative; }
+
+    .password-wrap input { padding-right: 2.8rem; }
+
+    .toggle-pw {
+      position: absolute;
+      right: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 0.82rem;
+      color: var(--muted);
+      user-select: none;
+      background: none;
+      border: none;
+      color: var(--muted);
+    }
+
+    .toggle-pw:hover { color: var(--gold); }
+
+    .strength-bar {
+      display: flex;
+      gap: 4px;
+      margin-top: 0.4rem;
+    }
+
+    .strength-seg {
+      height: 3px;
+      flex: 1;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.08);
+      transition: background 0.3s;
+    }
+
+    .strength-seg.filled { background: var(--gold); }
+
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      margin: 1rem 0;
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--gold);
+      margin-top: 2px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .checkbox-group a { color: var(--gold); text-decoration: none; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--gold);
+      border: none;
+      border-radius: 6px;
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 0.5rem;
+    }
+
+    .btn-submit:hover { background: var(--gold-light); }
+    .btn-submit:active { transform: scale(0.99); }
+
+    .error-msg {
+      display: none;
+      color: var(--error);
+      font-size: 0.76rem;
+      margin-top: 0.25rem;
+    }
+
+    @media (max-width: 900px) {
+      body { grid-template-columns: 1fr; }
+      .left-panel { display: none; }
+      .right-panel { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+    <a href="index.html" class="logo">Trade<span>Fin</span> Portal</a>
+
+    <div class="left-content">
+      <h2>Join the future of <em>Trade Finance</em></h2>
+      <p>Access Letters of Credit, Bank Guarantees, Collections, and Supply Chain Finance — all on one secure digital platform.</p>
+
+      <div class="benefit-list">
+        <div class="benefit-item">
+          <div class="benefit-icon">⚡</div>
+          <div>
+            <strong>Instant Instrument Access</strong>
+            <span>Apply, track, and manage all trade instruments digitally without branch visits.</span>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🔒</div>
+          <div>
+            <strong>Bank-Grade Security</strong>
+            <span>MFA, role-based access, AML/KYC compliance built into every workflow.</span>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🌐</div>
+          <div>
+            <strong>Global Multi-Currency</strong>
+            <span>Cross-border support aligned with UCP 600, URDG 758, and ICC standards.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="left-footer">
+      Already registered? <a href="signin.html">Sign in to your account →</a>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="right-panel">
+    <div class="form-box">
+      <div class="form-header">
+        <h1>Create Account</h1>
+        <p>Already have an account? <a href="signin.html">Sign in</a></p>
+      </div>
+
+      <form id="signupForm" novalidate>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" placeholder="Yashwanth" required />
+            <span class="error-msg" id="firstNameErr">Enter first name</span>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" placeholder="Bammidi" required />
+            <span class="error-msg" id="lastNameErr">Enter last name</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="companyEmail">Corporate Email</label>
+          <input type="email" id="companyEmail" placeholder="you@company.com" required />
+          <span class="error-msg" id="emailErr">Enter a valid email address</span>
+        </div>
+
+        <div class="form-group">
+          <label for="companyName">Company Name</label>
+          <input type="text" id="companyName" placeholder="Acme Exports Pvt. Ltd." required />
+          <span class="error-msg" id="companyErr">Enter company name</span>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="country">Country</label>
+            <select id="country" required>
+              <option value="" disabled selected>Select country</option>
+              <option>India</option>
+              <option>United States</option>
+              <option>United Kingdom</option>
+              <option>Singapore</option>
+              <option>UAE</option>
+              <option>Germany</option>
+              <option>Japan</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="businessType">Business Type</label>
+            <select id="businessType" required>
+              <option value="" disabled selected>Select type</option>
+              <option>Importer</option>
+              <option>Exporter</option>
+              <option>Both</option>
+              <option>Manufacturer</option>
+              <option>Trader</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="password-wrap">
+            <input type="password" id="password" placeholder="Min. 8 characters" required />
+            <button type="button" class="toggle-pw" id="togglePw">Show</button>
+          </div>
+          <div class="strength-bar">
+            <div class="strength-seg" id="s1"></div>
+            <div class="strength-seg" id="s2"></div>
+            <div class="strength-seg" id="s3"></div>
+            <div class="strength-seg" id="s4"></div>
+          </div>
+          <span class="error-msg" id="pwErr">Password must be at least 8 characters</span>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" placeholder="Re-enter password" required />
+          <span class="error-msg" id="confirmErr">Passwords do not match</span>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="terms" required />
+          <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. I confirm this account is for corporate trade finance purposes.</label>
+        </div>
+
+        <button type="submit" class="btn-submit">Create Account →</button>
+
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const togglePw = document.getElementById('togglePw');
+    const pwInput = document.getElementById('password');
+    togglePw.addEventListener('click', () => {
+      const shown = pwInput.type === 'text';
+      pwInput.type = shown ? 'password' : 'text';
+      togglePw.textContent = shown ? 'Show' : 'Hide';
+    });
+
+    pwInput.addEventListener('input', () => {
+      const v = pwInput.value;
+      const segs = [document.getElementById('s1'), document.getElementById('s2'), document.getElementById('s3'), document.getElementById('s4')];
+      let score = 0;
+      if (v.length >= 6) score++;
+      if (v.length >= 10) score++;
+      if (/[A-Z]/.test(v) && /[0-9]/.test(v)) score++;
+      if (/[^A-Za-z0-9]/.test(v)) score++;
+      segs.forEach((s, i) => s.classList.toggle('filled', i < score));
+    });
+
+    function showErr(id, show) {
+      document.getElementById(id).style.display = show ? 'block' : 'none';
+    }
+
+    document.getElementById('signupForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+
+      const fn = document.getElementById('firstName').value.trim();
+      const ln = document.getElementById('lastName').value.trim();
+      const em = document.getElementById('companyEmail').value.trim();
+      const co = document.getElementById('companyName').value.trim();
+      const pw = document.getElementById('password').value;
+      const cp = document.getElementById('confirmPassword').value;
+      const tc = document.getElementById('terms').checked;
+
+      showErr('firstNameErr', !fn); if (!fn) valid = false;
+      showErr('lastNameErr', !ln); if (!ln) valid = false;
+      showErr('emailErr', !em || !em.includes('@')); if (!em || !em.includes('@')) valid = false;
+      showErr('companyErr', !co); if (!co) valid = false;
+      showErr('pwErr', pw.length < 8); if (pw.length < 8) valid = false;
+      showErr('confirmErr', pw !== cp); if (pw !== cp) valid = false;
+
+      if (!tc) { alert('Please accept the Terms of Service to continue.'); valid = false; }
+
+      if (valid) {
+        window.location.href = 'signin.html';
+      }
+    });
+  </script>
+</body>
+</html>

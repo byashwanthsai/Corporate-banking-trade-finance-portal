@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TradeFin Portal – Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #102040;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --white: #ffffff;
+      --off-white: #f5f3ee;
+      --muted: #8a9ab5;
+      --card-bg: rgba(255,255,255,0.05);
+      --card-border: rgba(201,168,76,0.2);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      position: sticky;
+      top: 0;
+      background: var(--navy);
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+
+    .logo span { color: var(--white); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn-outline {
+      padding: 0.5rem 1.4rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      border-radius: 4px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover { background: rgba(201,168,76,0.12); }
+
+    .btn-solid {
+      padding: 0.5rem 1.4rem;
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      color: var(--navy);
+      border-radius: 4px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-solid:hover { background: var(--gold-light); }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 6rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.3rem 0.9rem;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      line-height: 1.18;
+      font-weight: 700;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 2.2rem;
+      max-width: 460px;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-lg {
+      padding: 0.8rem 2rem;
+      font-size: 0.95rem;
+    }
+
+    /* HERO VISUAL */
+    .hero-visual {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 8px;
+      padding: 1.1rem 1.2rem;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    .stat-value.gold { color: var(--gold); }
+
+    .stat-change {
+      font-size: 0.75rem;
+      color: #4caf88;
+      margin-top: 0.2rem;
+    }
+
+    .activity-list { display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.6rem 0.8rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 6px;
+      font-size: 0.82rem;
+    }
+
+    .activity-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-green { background: #4caf88; }
+    .dot-amber { background: var(--gold); }
+    .dot-blue  { background: #5b9bd5; }
+
+    .activity-info { flex: 1; color: var(--muted); }
+    .activity-info strong { color: var(--white); display: block; margin-bottom: 1px; }
+    .activity-amount { color: var(--gold); font-weight: 500; }
+
+    /* FEATURES */
+    .features {
+      padding: 5rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 3rem;
+      max-width: 500px;
+      line-height: 1.25;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 10px;
+      padding: 1.8rem;
+      transition: border-color 0.25s, background 0.25s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(201,168,76,0.4);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .feature-icon {
+      width: 44px; height: 44px;
+      border-radius: 8px;
+      background: rgba(201,168,76,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.3rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+
+    .feature-card p {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* INSTRUMENTS STRIP */
+    .instruments {
+      background: rgba(201,168,76,0.06);
+      border-top: 1px solid rgba(201,168,76,0.12);
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+      padding: 2.5rem 4rem;
+    }
+
+    .instruments-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .instruments-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .instrument-pills {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 0.4rem 1rem;
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      color: var(--gold-light);
+      letter-spacing: 0.02em;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2.5rem 4rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    footer a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .features { padding: 3rem 1.5rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .instruments { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Trade<span>Fin</span> Portal</div>
+    <ul class="nav-links">
+      <li><a href="#">Solutions</a></li>
+      <li><a href="#">Instruments</a></li>
+      <li><a href="#">Security</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="signin.html" class="btn-outline">Sign In</a>
+      <a href="signup.html" class="btn-solid">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-badge">Corporate Banking Platform</div>
+      <h1>Global Trade Finance, <em>Reimagined</em></h1>
+      <p>A unified digital platform to manage Letters of Credit, Bank Guarantees, Documentary Collections, and Supply Chain Finance — with real-time visibility across every transaction.</p>
+      <div class="hero-actions">
+        <a href="signup.html" class="btn-solid btn-lg">Open an Account</a>
+        <a href="#features" class="btn-outline btn-lg">Explore Features</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-label">Active LCs</div>
+          <div class="stat-value gold">142</div>
+          <div class="stat-change">↑ 12 this week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total Exposure</div>
+          <div class="stat-value">$48.6M</div>
+          <div class="stat-change">↑ 3.4% MTD</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Guarantees</div>
+          <div class="stat-value gold">37</div>
+          <div class="stat-change">5 maturing soon</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Limit Utilization</div>
+          <div class="stat-value">74%</div>
+          <div class="stat-change" style="color: var(--gold);">Within threshold</div>
+        </div>
+      </div>
+
+      <div class="activity-list">
+        <div class="activity-item">
+          <div class="activity-dot dot-green"></div>
+          <div class="activity-info"><strong>LC Issued – Tata Steel Ltd.</strong>Sight LC | HDFC Bank</div>
+          <div class="activity-amount">$2.4M</div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot dot-amber"></div>
+          <div class="activity-info"><strong>BG Amendment Pending</strong>Performance Bond | ICICI</div>
+          <div class="activity-amount">$850K</div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot dot-blue"></div>
+          <div class="activity-info"><strong>Collection Settled</strong>Import Bill | Axis Bank</div>
+          <div class="activity-amount">$1.1M</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTRUMENTS -->
+  <div class="instruments">
+    <div class="instruments-inner">
+      <span class="instruments-label">Trade Instruments</span>
+      <div class="instrument-pills">
+        <span class="pill">Letters of Credit</span>
+        <span class="pill">Bank Guarantees</span>
+        <span class="pill">Documentary Collections</span>
+        <span class="pill">Supply Chain Finance</span>
+        <span class="pill">Import / Export Bills</span>
+        <span class="pill">SWIFT Integration</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="section-label">Why TradeFin</div>
+    <h2 class="section-title">Built for the complexity of global trade</h2>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Real-Time Visibility</h3>
+        <p>Live dashboards showing LC status, BG maturity, limit utilization, and cash flow projections across all entities and geographies.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Enterprise Security</h3>
+        <p>Role-based access, multi-factor authentication, full audit trails, and built-in AML/KYC workflows aligned to regulatory standards.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>Multi-Currency & Cross-Border</h3>
+        <p>Supports multi-currency transactions and cross-border document management aligned with UCP 600, URDG 758, and ICC rules.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚙️</div>
+        <h3>SWIFT & ERP Integration</h3>
+        <p>Seamless connectivity with core banking systems, SWIFT networks, and ERP solutions enabling straight-through processing.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Digital Document Engine</h3>
+        <p>OCR-powered document upload and verification eliminates manual data entry and reduces discrepancy rates across trade cycles.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Working Capital Intelligence</h3>
+        <p>Actionable analytics on outstanding limits, maturity schedules, and cash flow projections to optimize working capital decisions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025–26 TradeFin Portal · KLH University · Front End Development Frameworks Project</p>
+    <p style="margin-top: 0.5rem;"><a href="signin.html">Sign In</a> · <a href="signup.html">Register</a></p>
+  </footer>
+
+</body>
+</html>

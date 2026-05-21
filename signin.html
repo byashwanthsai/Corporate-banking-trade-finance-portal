@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TradeFin Portal – Sign In</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #102040;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --white: #ffffff;
+      --muted: #8a9ab5;
+      --input-bg: rgba(255,255,255,0.05);
+      --input-border: rgba(201,168,76,0.2);
+      --input-focus: rgba(201,168,76,0.5);
+      --error: #e05a5a;
+      --success: #4caf88;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* LEFT PANEL */
+    .left-panel {
+      background: #0e1e35;
+      border-right: 1px solid rgba(201,168,76,0.12);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bg-pattern {
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(201,168,76,0.04) 60px),
+        repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(201,168,76,0.04) 60px);
+      pointer-events: none;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      text-decoration: none;
+      position: relative;
+    }
+
+    .logo span { color: var(--white); }
+
+    .left-content {
+      position: relative;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    .left-content h2 em { font-style: normal; color: var(--gold); }
+
+    .left-content p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 340px;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .metric-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 8px;
+      padding: 1.1rem;
+    }
+
+    .metric-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .metric-value {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--gold);
+    }
+
+    .metric-sub {
+      font-size: 0.72rem;
+      color: var(--success);
+      margin-top: 0.2rem;
+    }
+
+    .trust-badges {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .badge {
+      padding: 0.3rem 0.75rem;
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 100px;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+
+    .left-footer {
+      font-size: 0.78rem;
+      color: var(--muted);
+      position: relative;
+    }
+
+    .left-footer a { color: var(--gold); text-decoration: none; }
+
+    /* RIGHT PANEL */
+    .right-panel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2.5rem;
+    }
+
+    .form-box {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .form-header { margin-bottom: 2rem; }
+
+    .form-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-header p {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .form-header p a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .form-group label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+    }
+
+    .form-group input {
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 6px;
+      padding: 0.75rem 0.9rem;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+    }
+
+    .form-group input::placeholder { color: rgba(138,154,181,0.4); }
+
+    .form-group input:focus {
+      border-color: var(--input-focus);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .form-group input.invalid { border-color: var(--error); }
+
+    .label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .forgot-link {
+      font-size: 0.78rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .forgot-link:hover { text-decoration: underline; }
+
+    .password-wrap { position: relative; }
+
+    .password-wrap input { padding-right: 3rem; }
+
+    .toggle-pw {
+      position: absolute;
+      right: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 0.8rem;
+      background: none;
+      border: none;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .toggle-pw:hover { color: var(--gold); }
+
+    .error-alert {
+      display: none;
+      background: rgba(224,90,90,0.1);
+      border: 1px solid rgba(224,90,90,0.3);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      font-size: 0.84rem;
+      color: #f08080;
+      margin-bottom: 1rem;
+    }
+
+    .remember-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0.5rem 0 1.2rem;
+      font-size: 0.83rem;
+    }
+
+    .remember-row label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .remember-row input[type="checkbox"] {
+      accent-color: var(--gold);
+      width: 15px;
+      height: 15px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--gold);
+      border: none;
+      border-radius: 6px;
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-submit:hover { background: var(--gold-light); }
+    .btn-submit:active { transform: scale(0.99); }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(201,168,76,0.12);
+    }
+
+    .mfa-notice {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: rgba(201,168,76,0.07);
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 1.2rem;
+    }
+
+    .mfa-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .security-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
+
+    .security-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .security-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+
+    @media (max-width: 900px) {
+      body { grid-template-columns: 1fr; }
+      .left-panel { display: none; }
+      .right-panel { padding: 2.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+    <div class="bg-pattern"></div>
+
+    <a href="index.html" class="logo">Trade<span>Fin</span> Portal</a>
+
+    <div class="left-content">
+      <h2>Your global trade, under <em>one roof</em></h2>
+      <p>Monitor your Letters of Credit, Bank Guarantees, and Collections with real-time dashboards — from anywhere in the world.</p>
+
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-label">Active Transactions</div>
+          <div class="metric-value">1,284</div>
+          <div class="metric-sub">↑ 8.2% this quarter</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Trade Volume</div>
+          <div class="metric-value">$2.4B</div>
+          <div class="metric-sub">↑ 12% YoY</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Corporate Clients</div>
+          <div class="metric-value">340+</div>
+          <div class="metric-sub">Across 28 countries</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Avg. Processing</div>
+          <div class="metric-value">4hrs</div>
+          <div class="metric-sub">vs 5 days manual</div>
+        </div>
+      </div>
+
+      <div class="trust-badges">
+        <span class="badge">UCP 600 Compliant</span>
+        <span class="badge">SWIFT Connected</span>
+        <span class="badge">ISO 27001</span>
+        <span class="badge">AML/KYC Ready</span>
+      </div>
+    </div>
+
+    <div class="left-footer">
+      New to TradeFin? <a href="signup.html">Create a corporate account →</a>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="right-panel">
+    <div class="form-box">
+      <div class="form-header">
+        <h1>Welcome back</h1>
+        <p>Don't have an account? <a href="signup.html">Register here</a></p>
+      </div>
+
+      <div class="error-alert" id="errorAlert">
+        Invalid email or password. Please check your credentials and try again.
+      </div>
+
+      <form id="signinForm" novalidate>
+
+        <div class="form-group">
+          <label for="email">Corporate Email</label>
+          <input type="email" id="email" placeholder="you@company.com" required autocomplete="email"/>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="password">Password</label>
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+          <div class="password-wrap">
+            <input type="password" id="password" placeholder="Enter your password" required autocomplete="current-password"/>
+            <button type="button" class="toggle-pw" id="togglePw">Show</button>
+          </div>
+        </div>
+
+        <div class="remember-row">
+          <label>
+            <input type="checkbox" id="rememberMe" />
+            Keep me signed in
+          </label>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Sign In →</button>
+
+      </form>
+
+      <div class="mfa-notice">
+        <span class="mfa-icon">🔐</span>
+        <span>After sign-in, you may be prompted for a second verification step (OTP or authenticator app) based on your security settings.</span>
+      </div>
+
+      <div class="security-strip">
+        <span class="security-item"><span class="security-dot"></span> 256-bit SSL</span>
+        <span class="security-item"><span class="security-dot"></span> MFA Protected</span>
+        <span class="security-item"><span class="security-dot"></span> Session Encrypted</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const togglePw = document.getElementById('togglePw');
+    const pwInput = document.getElementById('password');
+
+    togglePw.addEventListener('click', () => {
+      const shown = pwInput.type === 'text';
+      pwInput.type = shown ? 'password' : 'text';
+      togglePw.textContent = shown ? 'Show' : 'Hide';
+    });
+
+    document.getElementById('signinForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const btn = document.getElementById('submitBtn');
+      const alert = document.getElementById('errorAlert');
+
+      alert.style.display = 'none';
+      document.getElementById('email').classList.remove('invalid');
+      document.getElementById('password').classList.remove('invalid');
+
+      if (!email || !email.includes('@') || !password) {
+        alert.style.display = 'block';
+        if (!email || !email.includes('@')) document.getElementById('email').classList.add('invalid');
+        if (!password) document.getElementById('password').classList.add('invalid');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Signing in…';
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = 'Sign In →';
+        alert.style.display = 'block';
+        document.getElementById('email').classList.add('invalid');
+        document.getElementById('password').classList.add('invalid');
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
