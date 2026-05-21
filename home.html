@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TradeFin Portal – Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a1628;
+  --navy-mid:#102040;
+  --navy-card:#0d1b30;
+  --gold:#c9a84c;
+  --gold-light:#e8c97a;
+  --white:#ffffff;
+  --off:#f5f3ee;
+  --muted:#8a9ab5;
+  --muted2:#6a7d99;
+  --card-border:rgba(201,168,76,0.18);
+  --card-bg:rgba(255,255,255,0.04);
+  --green:#4caf88;
+  --blue:#5b9bd5;
+  --red:#e05a5a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 4rem;
+  border-bottom:1px solid rgba(201,168,76,0.13);
+  position:sticky;top:0;
+  background:rgba(10,22,40,0.96);
+  backdrop-filter:blur(10px);
+  z-index:200;
+}
+.logo{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--gold);text-decoration:none}
+.logo span{color:var(--white)}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:0.85rem;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:0.8rem}
+.btn-o{padding:.45rem 1.2rem;border:1px solid var(--gold);color:var(--gold);background:transparent;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:.82rem;cursor:pointer;text-decoration:none;transition:background .2s}
+.btn-o:hover{background:rgba(201,168,76,.1)}
+.btn-s{padding:.45rem 1.2rem;border:1px solid var(--gold);background:var(--gold);color:var(--navy);border-radius:4px;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;text-decoration:none;transition:background .2s}
+.btn-s:hover{background:var(--gold-light)}
+
+/* ── HERO ── */
+.hero{
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;gap:3.5rem;
+  padding:5.5rem 4rem 4rem;
+  max-width:1280px;margin:0 auto;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(201,168,76,.35);
+  padding:.28rem .85rem;border-radius:2px;margin-bottom:1.4rem;
+}
+.badge-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:blink 1.8s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,3.6rem);line-height:1.14;font-weight:700;margin-bottom:1.3rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{color:var(--muted);font-size:.93rem;line-height:1.75;margin-bottom:2rem;max-width:480px}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-lg{padding:.78rem 2rem;font-size:.9rem}
+.hero-trust{display:flex;align-items:center;gap:1.5rem;margin-top:2.2rem;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--muted)}
+.trust-item svg{width:13px;height:13px;fill:var(--green)}
+
+/* HERO RIGHT — live dashboard card */
+.hero-dash{
+  background:var(--navy-card);
+  border:1px solid var(--card-border);
+  border-radius:12px;padding:1.5rem;
+  display:flex;flex-direction:column;gap:1rem;
+}
+.dash-topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:.9rem;border-bottom:1px solid rgba(201,168,76,.1);
+}
+.dash-title{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.live-badge{display:flex;align-items:center;gap:.35rem;font-size:.68rem;color:var(--green)}
+.live-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:blink 1.8s infinite}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}
+.kpi{background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.1);border-radius:7px;padding:.8rem .9rem}
+.kpi-l{font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.3rem}
+.kpi-v{font-size:1.25rem;font-weight:500;line-height:1}
+.kpi-v.gold{color:var(--gold)}
+.kpi-c{font-size:.66rem;margin-top:.2rem}
+.kpi-c.up{color:var(--green)} .kpi-c.warn{color:var(--gold)}
+.tx-list{display:flex;flex-direction:column;gap:.5rem}
+.tx-item{
+  display:flex;align-items:center;gap:.8rem;
+  padding:.6rem .75rem;
+  background:rgba(255,255,255,.025);border-radius:6px;
+  border:1px solid rgba(255,255,255,.04);
+}
+.tx-bar{width:3px;height:30px;border-radius:2px;flex-shrink:0}
+.bar-g{background:var(--green)} .bar-a{background:var(--gold)} .bar-b{background:var(--blue)} .bar-r{background:var(--red)}
+.tx-body{flex:1}
+.tx-name{font-size:.76rem;font-weight:500;color:var(--white)}
+.tx-sub{font-size:.65rem;color:var(--muted);margin-top:1px}
+.tx-amt{font-size:.82rem;font-weight:500;color:var(--gold)}
+.tx-tag{font-size:.6rem;padding:.15rem .5rem;border-radius:3px;font-weight:500}
+.tag-g{background:rgba(76,175,136,.15);color:var(--green)}
+.tag-a{background:rgba(201,168,76,.15);color:var(--gold)}
+.tag-b{background:rgba(91,155,213,.15);color:var(--blue)}
+.tag-r{background:rgba(224,90,90,.15);color:var(--red)}
+.mini-chart{display:flex;align-items:flex-end;gap:3px;height:36px}
+.bar-chart-col{flex:1;background:rgba(201,168,76,.25);border-radius:2px 2px 0 0;transition:background .2s}
+.bar-chart-col:hover{background:var(--gold)}
+.bar-chart-col.hi{background:rgba(201,168,76,.5)}
+.chart-wrap{display:flex;flex-direction:column;gap:.4rem}
+.chart-lbl{font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+
+/* ── INSTRUMENTS TICKER ── */
+.ticker-wrap{
+  overflow:hidden;
+  background:rgba(201,168,76,.05);
+  border-top:1px solid rgba(201,168,76,.1);
+  border-bottom:1px solid rgba(201,168,76,.1);
+  padding:.65rem 0;
+}
+.ticker-inner{
+  display:flex;gap:2.5rem;
+  animation:ticker 22s linear infinite;
+  white-space:nowrap;
+}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{display:flex;align-items:center;gap:.55rem;font-size:.72rem;color:var(--muted);flex-shrink:0}
+.ticker-item strong{color:var(--gold);font-weight:500}
+.ticker-sep{color:rgba(201,168,76,.3)}
+
+/* ── SECTION COMMONS ── */
+section{padding:5rem 4rem;max-width:1280px;margin:0 auto}
+.sec-label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.sec-title{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:600;line-height:1.22;margin-bottom:2.8rem;max-width:560px}
+.sec-title em{font-style:normal;color:var(--gold)}
+
+/* ── FEATURES ── */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+.feat-card{
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  border-radius:10px;padding:1.7rem;
+  transition:background .25s,border-color .25s,transform .2s;
+}
+.feat-card:hover{background:rgba(255,255,255,.07);border-color:rgba(201,168,76,.4);transform:translateY(-2px)}
+.feat-icon{
+  width:42px;height:42px;border-radius:8px;
+  background:rgba(201,168,76,.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;margin-bottom:1.1rem;
+}
+.feat-card h3{font-size:.95rem;font-weight:500;margin-bottom:.5rem}
+.feat-card p{font-size:.82rem;color:var(--muted);line-height:1.65}
+
+/* ── WORKFLOW ── */
+.workflow-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.steps{display:flex;flex-direction:column;gap:0}
+.step{display:flex;gap:1.2rem;padding:1.2rem 0;border-bottom:1px solid rgba(255,255,255,.05);cursor:pointer;transition:background .15s}
+.step:last-child{border-bottom:none}
+.step-num{
+  width:32px;height:32px;border-radius:50%;
+  border:1px solid rgba(201,168,76,.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:600;color:var(--gold);
+  flex-shrink:0;margin-top:2px;
+  transition:background .2s,border-color .2s;
+}
+.step:hover .step-num,.step.active .step-num{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.step-body h4{font-size:.9rem;font-weight:500;margin-bottom:.3rem}
+.step-body p{font-size:.8rem;color:var(--muted);line-height:1.6}
+.workflow-visual{
+  background:var(--navy-card);border:1px solid var(--card-border);
+  border-radius:12px;padding:1.8rem;min-height:360px;
+  display:flex;flex-direction:column;gap:1rem;
+}
+.wv-title{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.4rem}
+.progress-item{margin-bottom:.6rem}
+.progress-label{display:flex;justify-content:space-between;font-size:.75rem;margin-bottom:.35rem}
+.progress-label span:first-child{color:var(--white)}
+.progress-label span:last-child{color:var(--gold)}
+.progress-track{height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;border-radius:3px;background:var(--gold);transition:width 1.2s ease}
+.progress-fill.green{background:var(--green)}
+.progress-fill.blue{background:var(--blue)}
+.wv-divider{height:1px;background:rgba(201,168,76,.08);margin:.2rem 0}
+.wv-meta{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-top:.2rem}
+.wv-meta strong{color:var(--gold)}
+
+/* ── INSTRUMENTS DEEP DIVE ── */
+.instruments-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+.inst-card{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:10px;padding:1.6rem;
+  display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;
+  transition:background .2s,border-color .2s;
+}
+.inst-card:hover{background:rgba(255,255,255,.06);border-color:rgba(201,168,76,.35)}
+.inst-icon{
+  width:46px;height:46px;border-radius:8px;
+  background:rgba(201,168,76,.1);
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+}
+.inst-body h3{font-size:.95rem;font-weight:500;margin-bottom:.4rem}
+.inst-body p{font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:.7rem}
+.inst-tags{display:flex;gap:.4rem;flex-wrap:wrap}
+.itag{font-size:.62rem;padding:.18rem .55rem;border:1px solid rgba(201,168,76,.25);border-radius:3px;color:var(--gold);letter-spacing:.04em}
+
+/* ── COMPLIANCE ── */
+.compliance-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.compliance-list{display:flex;flex-direction:column;gap:1rem}
+.comp-item{
+  display:flex;align-items:flex-start;gap:1rem;
+  padding:1.1rem 1.2rem;
+  background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;
+}
+.comp-ico{
+  width:36px;height:36px;border-radius:6px;
+  background:rgba(201,168,76,.1);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;
+}
+.comp-body h4{font-size:.88rem;font-weight:500;margin-bottom:.25rem}
+.comp-body p{font-size:.78rem;color:var(--muted);line-height:1.55}
+.compliance-standards{display:flex;flex-direction:column;gap:1.2rem}
+.std-card{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:10px;padding:1.4rem;
+}
+.std-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.7rem}
+.std-name{font-size:.9rem;font-weight:500}
+.std-badge{font-size:.65rem;padding:.2rem .6rem;border-radius:3px;background:rgba(76,175,136,.15);color:var(--green)}
+.std-desc{font-size:.78rem;color:var(--muted);line-height:1.55}
+
+/* ── INTEGRATIONS ── */
+.int-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.int-card{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:10px;padding:1.4rem 1rem;
+  text-align:center;transition:background .2s,border-color .2s,transform .2s;
+}
+.int-card:hover{background:rgba(255,255,255,.06);border-color:rgba(201,168,76,.35);transform:translateY(-3px)}
+.int-logo{font-size:1.8rem;margin-bottom:.6rem}
+.int-name{font-size:.82rem;font-weight:500;margin-bottom:.25rem}
+.int-type{font-size:.68rem;color:var(--muted)}
+.int-status{display:inline-block;font-size:.62rem;margin-top:.5rem;padding:.15rem .5rem;border-radius:3px;background:rgba(76,175,136,.12);color:var(--green)}
+
+/* ── STATS BANNER ── */
+.stats-banner{
+  background:var(--navy-card);
+  border-top:1px solid var(--card-border);
+  border-bottom:1px solid var(--card-border);
+  padding:3rem 4rem;
+}
+.stats-inner{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  gap:1.5rem;max-width:1280px;margin:0 auto;
+  text-align:center;
+}
+.stat-b{padding:0 1rem;border-right:1px solid rgba(201,168,76,.12)}
+.stat-b:last-child{border-right:none}
+.stat-b-num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:.35rem}
+.stat-b-lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
+
+/* ── TESTIMONIAL ── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.testi-card{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:10px;padding:1.6rem;
+  display:flex;flex-direction:column;justify-content:space-between;gap:1.2rem;
+}
+.testi-quote{font-size:.87rem;color:var(--off);line-height:1.7;font-style:italic}
+.testi-quote::before{content:'"';font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);line-height:0;vertical-align:-10px;margin-right:3px}
+.testi-author{display:flex;align-items:center;gap:.75rem}
+.testi-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;font-weight:600;color:var(--gold);flex-shrink:0;
+}
+.testi-name{font-size:.82rem;font-weight:500}
+.testi-role{font-size:.7rem;color:var(--muted)}
+.testi-stars{color:var(--gold);font-size:.75rem;margin-bottom:.4rem}
+
+/* ── CTA BANNER ── */
+.cta-banner{
+  background:linear-gradient(135deg,rgba(201,168,76,.08) 0%,rgba(201,168,76,.03) 100%);
+  border:1px solid var(--card-border);
+  border-radius:14px;
+  padding:4rem;
+  text-align:center;
+  margin:0 4rem 5rem;
+  position:relative;overflow:hidden;
+}
+.cta-banner::before{
+  content:'';position:absolute;
+  top:-60px;right:-60px;
+  width:220px;height:220px;
+  border:1px solid rgba(201,168,76,.1);
+  border-radius:50%;
+}
+.cta-banner::after{
+  content:'';position:absolute;
+  bottom:-80px;left:-80px;
+  width:280px;height:280px;
+  border:1px solid rgba(201,168,76,.07);
+  border-radius:50%;
+}
+.cta-banner h2{font-family:'Playfair Display',serif;font-size:2.3rem;font-weight:700;margin-bottom:.8rem}
+.cta-banner h2 em{font-style:normal;color:var(--gold)}
+.cta-banner p{color:var(--muted);font-size:.92rem;max-width:520px;margin:0 auto 2rem;line-height:1.7}
+.cta-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;position:relative;z-index:1}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid rgba(201,168,76,.12);
+  padding:3rem 4rem;
+}
+.footer-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;
+  margin-bottom:2.5rem;
+}
+.footer-brand .logo{display:inline-block;margin-bottom:.9rem}
+.footer-brand p{font-size:.8rem;color:var(--muted);line-height:1.65;max-width:280px}
+.footer-col h4{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:.9rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.footer-col ul a{text-decoration:none;font-size:.8rem;color:var(--muted);transition:color .2s}
+.footer-col ul a:hover{color:var(--gold)}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.05);
+  padding-top:1.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+  max-width:1280px;margin:0 auto;
+  font-size:.74rem;color:var(--muted2);
+}
+.footer-bottom a{color:var(--muted);text-decoration:none}
+.footer-pills{display:flex;gap:.5rem}
+.fpill{padding:.2rem .65rem;border:1px solid rgba(201,168,76,.2);border-radius:2px;font-size:.62rem;color:var(--muted)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  nav{padding:1rem 2rem}
+  section{padding:3.5rem 2rem}
+  .hero{padding:4rem 2rem 3rem;grid-template-columns:1fr;gap:2.5rem}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .workflow-wrap,.compliance-wrap{grid-template-columns:1fr}
+  .int-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-inner{grid-template-columns:repeat(3,1fr)}
+  .stat-b{border:none;padding:.5rem}
+  .testi-grid{grid-template-columns:1fr}
+  .cta-banner{margin:0 2rem 4rem;padding:2.5rem}
+  footer{padding:2.5rem 2rem}
+  .footer-inner{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .nav-links,.nav-right .btn-o{display:none}
+  .hero h1{font-size:2.1rem}
+  .kpi-row{grid-template-columns:1fr 1fr}
+  .feat-grid,.instruments-grid{grid-template-columns:1fr}
+  .int-grid{grid-template-columns:1fr 1fr}
+  .stats-inner{grid-template-columns:1fr 1fr}
+  .footer-inner{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">Trade<span>Fin</span> Portal</a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#instruments">Instruments</a></li>
+    <li><a href="#workflow">Workflow</a></li>
+    <li><a href="#compliance">Compliance</a></li>
+    <li><a href="#integrations">Integrations</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="signin.html" class="btn-o">Sign In</a>
+    <a href="signup.html" class="btn-s">Get Started</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section style="max-width:1280px;margin:0 auto;padding:5.5rem 4rem 3rem">
+  <div class="hero" style="padding:0;margin:0;max-width:none">
+    <div>
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Corporate Banking Platform — Phase 1
+      </div>
+      <h1>Global Trade Finance,<br><em>Reimagined</em> Digitally</h1>
+      <p>A unified portal to manage Letters of Credit, Bank Guarantees, Documentary Collections, and Supply Chain Finance — with real-time tracking, OCR automation, and compliance built in from day one.</p>
+      <div class="hero-btns">
+        <a href="signup.html" class="btn-s btn-lg">Open Account</a>
+        <a href="#features" class="btn-o btn-lg">Explore Features</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item">
+          <svg viewBox="0 0 16 16"><path d="M8 1l2 4 5 .7-3.5 3.4.8 5L8 12l-4.3 2.1.8-5L1 5.7 6 5z"/></svg>
+          UCP 600 Compliant
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 16 16"><path d="M8 1l2 4 5 .7-3.5 3.4.8 5L8 12l-4.3 2.1.8-5L1 5.7 6 5z"/></svg>
+          SWIFT Connected
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 16 16"><path d="M8 1l2 4 5 .7-3.5 3.4.8 5L8 12l-4.3 2.1.8-5L1 5.7 6 5z"/></svg>
+          ISO 27001 Security
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 16 16"><path d="M8 1l2 4 5 .7-3.5 3.4.8 5L8 12l-4.3 2.1.8-5L1 5.7 6 5z"/></svg>
+          AML / KYC Ready
+        </div>
+      </div>
+    </div>
+
+    <!-- LIVE DASHBOARD CARD -->
+    <div class="hero-dash">
+      <div class="dash-topbar">
+        <span class="dash-title">Live Dashboard Overview</span>
+        <span class="live-badge"><span class="live-dot"></span>Live</span>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi"><div class="kpi-l">Active LCs</div><div class="kpi-v gold">142</div><div class="kpi-c up">↑ 12 this week</div></div>
+        <div class="kpi"><div class="kpi-l">Exposure</div><div class="kpi-v">$48.6M</div><div class="kpi-c up">↑ 3.4% MTD</div></div>
+        <div class="kpi"><div class="kpi-l">Guarantees</div><div class="kpi-v gold">37</div><div class="kpi-c warn">5 maturing</div></div>
+        <div class="kpi"><div class="kpi-l">Utilization</div><div class="kpi-v">74%</div><div class="kpi-c up">Normal</div></div>
+      </div>
+      <div class="tx-list">
+        <div class="tx-item">
+          <div class="tx-bar bar-g"></div>
+          <div class="tx-body">
+            <div class="tx-name">LC Issued — Tata Steel Ltd.</div>
+            <div class="tx-sub">Sight LC · HDFC Bank · Mumbai</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+            <div class="tx-amt">$2.4M</div>
+            <span class="tx-tag tag-g">Active</span>
+          </div>
+        </div>
+        <div class="tx-item">
+          <div class="tx-bar bar-a"></div>
+          <div class="tx-body">
+            <div class="tx-name">BG Amendment Pending</div>
+            <div class="tx-sub">Performance Bond · ICICI Bank</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+            <div class="tx-amt">$850K</div>
+            <span class="tx-tag tag-a">Pending</span>
+          </div>
+        </div>
+        <div class="tx-item">
+          <div class="tx-bar bar-b"></div>
+          <div class="tx-body">
+            <div class="tx-name">Import Bill Settled</div>
+            <div class="tx-sub">Documentary Collection · Axis Bank</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+            <div class="tx-amt">$1.1M</div>
+            <span class="tx-tag tag-b">Settled</span>
+          </div>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <div class="chart-lbl">Volume (Last 7 Days)</div>
+        <div class="mini-chart" id="minichart"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner" id="ticker">
+    <span class="ticker-item">Letters of Credit <strong>142 Active</strong></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item">Bank Guarantees <strong>37 Issued</strong></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item">SWIFT MT700 <strong>Connected</strong></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item">OCR Processing <strong>99.2% Accuracy</strong></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item">Supply Chain Finance <strong>$12.4M</strong></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item">AML/KYC <strong>Auto-Verified</strong></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item">Avg. Processing <strong>4 Hours</strong></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item">UCP 600 <strong>Compliant</strong></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item">URDG 758 <strong>Supported</strong></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item">Multi-Currency <strong>28 Currencies</strong></span>
+    <span class="ticker-sep">·</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item">Letters of Credit <strong>142 Active</strong></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item">Bank Guarantees <strong>37 Issued</strong></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item">SWIFT MT700 <strong>Connected</strong></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item">OCR Processing <strong>99.2% Accuracy</strong></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item">Supply Chain Finance <strong>$12.4M</strong></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item">AML/KYC <strong>Auto-Verified</strong></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item">Avg. Processing <strong>4 Hours</strong></span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-item">Multi-Currency <strong>28 Currencies</strong></span>
+    <span class="ticker-sep">·</span>
+  </div>
+</div>
+
+<!-- STATS BANNER -->
+<div class="stats-banner">
+  <div class="stats-inner">
+    <div class="stat-b"><div class="stat-b-num">$2.4B+</div><div class="stat-b-lbl">Trade Volume Processed</div></div>
+    <div class="stat-b"><div class="stat-b-num">1,284</div><div class="stat-b-lbl">Active Transactions</div></div>
+    <div class="stat-b"><div class="stat-b-num">340+</div><div class="stat-b-lbl">Corporate Clients</div></div>
+    <div class="stat-b"><div class="stat-b-num">4 hrs</div><div class="stat-b-lbl">Avg. Processing Time</div></div>
+    <div class="stat-b"><div class="stat-b-num">99.2%</div><div class="stat-b-lbl">OCR Accuracy Rate</div></div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="sec-label">Why TradeFin</div>
+  <h2 class="sec-title">Everything your trade <em>team needs</em></h2>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon">📊</div>
+      <h3>Real-Time Dashboard</h3>
+      <p>Live visibility into LC status, BG maturity, utilization rates, and cash flow projections across all entities and geographies in one view.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🤖</div>
+      <h3>OCR Document Engine</h3>
+      <p>Optical Character Recognition automatically extracts data from bills of lading, invoices, and certificates — eliminating manual entry and discrepancy errors.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">⚙️</div>
+      <h3>Workflow Automation</h3>
+      <p>Configurable approval chains, automated status notifications, and straight-through processing (STP) reduce cycle times from days to hours.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🔒</div>
+      <h3>AML / KYC Compliance</h3>
+      <p>Built-in anti-money laundering screening and KYC verification with automated document checks aligned to regulatory frameworks across jurisdictions.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🌐</div>
+      <h3>SWIFT & ERP Integration</h3>
+      <p>Native SWIFT MT/MX message support and pre-built connectors for SAP, Oracle, and major ERP platforms for seamless data synchronization.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">💱</div>
+      <h3>Multi-Currency Support</h3>
+      <p>Transact across 28+ currencies with real-time FX rates, cross-border document management, and support for ICC, UCP 600, and URDG 758 standards.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🛡️</div>
+      <h3>Role-Based Access Control</h3>
+      <p>Granular RBAC with multi-factor authentication, full audit trails, and session management ensuring every action is traceable and authorized.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📈</div>
+      <h3>Working Capital Analytics</h3>
+      <p>Actionable insights on limit utilization, maturity schedules, and funding gaps help treasury teams make faster, smarter capital allocation decisions.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📩</div>
+      <h3>Smart Notifications</h3>
+      <p>Automated alerts for document discrepancies, maturity dates, amendment deadlines, and compliance triggers across all instruments and counterparties.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUMENTS -->
+<section id="instruments" style="background:var(--navy-card);max-width:none;padding:5rem 4rem;border-top:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="sec-label">Trade Instruments</div>
+    <h2 class="sec-title">All instruments, <em>one platform</em></h2>
+    <div class="instruments-grid">
+      <div class="inst-card">
+        <div class="inst-icon">📜</div>
+        <div class="inst-body">
+          <h3>Letters of Credit (LC)</h3>
+          <p>Apply for, amend, and track Sight LCs, Usance LCs, Standby LCs, and Back-to-Back LCs with full document presentation workflows and discrepancy management.</p>
+          <div class="inst-tags">
+            <span class="itag">Sight LC</span>
+            <span class="itag">Usance LC</span>
+            <span class="itag">Standby LC</span>
+            <span class="itag">UCP 600</span>
+          </div>
+        </div>
+      </div>
+      <div class="inst-card">
+        <div class="inst-icon">🏛️</div>
+        <div class="inst-body">
+          <h3>Bank Guarantees (BG)</h3>
+          <p>Issue and manage Performance Bonds, Advance Payment Guarantees, Financial Guarantees, and Bid Bonds with automated claim processing and URDG 758 alignment.</p>
+          <div class="inst-tags">
+            <span class="itag">Performance Bond</span>
+            <span class="itag">Bid Bond</span>
+            <span class="itag">URDG 758</span>
+          </div>
+        </div>
+      </div>
+      <div class="inst-card">
+        <div class="inst-icon">📋</div>
+        <div class="inst-body">
+          <h3>Documentary Collections</h3>
+          <p>Digitize D/P and D/A collections with automated document routing between presenting and collecting banks, status tracking, and acceptance workflows.</p>
+          <div class="inst-tags">
+            <span class="itag">D/P Collections</span>
+            <span class="itag">D/A Collections</span>
+            <span class="itag">ICC URC 522</span>
+          </div>
+        </div>
+      </div>
+      <div class="inst-card">
+        <div class="inst-icon">🔗</div>
+        <div class="inst-body">
+          <h3>Supply Chain Finance</h3>
+          <p>Enable early payment programs, reverse factoring, and invoice discounting to optimize working capital across the entire buyer-supplier network.</p>
+          <div class="inst-tags">
+            <span class="itag">Invoice Discounting</span>
+            <span class="itag">Reverse Factoring</span>
+            <span class="itag">Early Payment</span>
+          </div>
+        </div>
+      </div>
+      <div class="inst-card">
+        <div class="inst-icon">✈️</div>
+        <div class="inst-body">
+          <h3>Import / Export Bills</h3>
+          <p>Process import and export bills with automated document checking, foreign exchange settlement, and straight-through processing to core banking systems.</p>
+          <div class="inst-tags">
+            <span class="itag">Import Bills</span>
+            <span class="itag">Export Bills</span>
+            <span class="itag">FX Settlement</span>
+          </div>
+        </div>
+      </div>
+      <div class="inst-card">
+        <div class="inst-icon">💼</div>
+        <div class="inst-body">
+          <h3>Trade Loans & Advances</h3>
+          <p>Apply for pre-shipment and post-shipment finance, packing credit, and buyers' credit with real-time limit monitoring and automated drawdown workflows.</p>
+          <div class="inst-tags">
+            <span class="itag">Pre-Shipment</span>
+            <span class="itag">Post-Shipment</span>
+            <span class="itag">Buyers Credit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKFLOW -->
+<section id="workflow">
+  <div class="sec-label">How It Works</div>
+  <h2 class="sec-title">From application to <em>settlement</em></h2>
+  <div class="workflow-wrap">
+    <div class="steps">
+      <div class="step active" onclick="setStep(this,0)">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Initiate Instrument</h4>
+          <p>Apply for any trade instrument digitally — upload documents, set terms, and submit for bank review in minutes.</p>
+        </div>
+      </div>
+      <div class="step" onclick="setStep(this,1)">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>OCR & Document Verification</h4>
+          <p>Uploaded documents are automatically scanned and verified using OCR, reducing discrepancy rates and manual review time.</p>
+        </div>
+      </div>
+      <div class="step" onclick="setStep(this,2)">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>Compliance & KYC Screening</h4>
+          <p>Built-in AML screening and KYC checks run automatically against counterparty data and sanctions lists.</p>
+        </div>
+      </div>
+      <div class="step" onclick="setStep(this,3)">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h4>Bank Approval Workflow</h4>
+          <p>Configurable multi-level approval routing with real-time status updates, comments, and amendment handling.</p>
+        </div>
+      </div>
+      <div class="step" onclick="setStep(this,4)">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h4>SWIFT Issuance & Settlement</h4>
+          <p>Instruments are transmitted via SWIFT and settled with straight-through processing to core banking and ERP systems.</p>
+        </div>
+      </div>
+    </div>
+    <div class="workflow-visual" id="wv">
+      <div class="wv-title">LC Application — Tata Steel Ltd.</div>
+      <div class="progress-item">
+        <div class="progress-label"><span>Document Upload & OCR</span><span>100%</span></div>
+        <div class="progress-track"><div class="progress-fill green" style="width:100%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-label"><span>AML / KYC Screening</span><span>100%</span></div>
+        <div class="progress-track"><div class="progress-fill green" style="width:100%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-label"><span>Credit Limit Check</span><span>100%</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:100%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-label"><span>Relationship Manager Approval</span><span>75%</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:75%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-label"><span>SWIFT MT700 Issuance</span><span>Pending</span></div>
+        <div class="progress-track"><div class="progress-fill blue" style="width:10%"></div></div>
+      </div>
+      <div class="wv-divider"></div>
+      <div class="wv-meta">
+        <span>LC Reference: <strong>LC-2024-00142</strong></span>
+        <span>Amount: <strong>$2.4M USD</strong></span>
+        <span>ETA: <strong>2 hrs</strong></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLIANCE -->
+<section id="compliance" style="background:var(--navy-card);max-width:none;padding:5rem 4rem;border-top:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="sec-label">Security & Compliance</div>
+    <h2 class="sec-title">Built for <em>regulated</em> environments</h2>
+    <div class="compliance-wrap">
+      <div class="compliance-list">
+        <div class="comp-item">
+          <div class="comp-ico">🔐</div>
+          <div class="comp-body">
+            <h4>Multi-Factor Authentication</h4>
+            <p>Every login enforces MFA via OTP, authenticator apps, or hardware tokens — ensuring only authorized users access sensitive trade data.</p>
+          </div>
+        </div>
+        <div class="comp-item">
+          <div class="comp-ico">📁</div>
+          <div class="comp-body">
+            <h4>Full Audit Trails</h4>
+            <p>Every action — from document uploads to approval decisions — is timestamped, logged, and immutably stored for regulatory review.</p>
+          </div>
+        </div>
+        <div class="comp-item">
+          <div class="comp-ico">🛡️</div>
+          <div class="comp-body">
+            <h4>Role-Based Access Control</h4>
+            <p>Granular permissions per user, department, and instrument type ensure the right people access only what they need.</p>
+          </div>
+        </div>
+        <div class="comp-item">
+          <div class="comp-ico">🔍</div>
+          <div class="comp-body">
+            <h4>Sanctions Screening</h4>
+            <p>Real-time screening against OFAC, UN, EU, and local sanctions lists for every counterparty and beneficiary in every transaction.</p>
+          </div>
+        </div>
+      </div>
+      <div class="compliance-standards">
+        <div class="std-card">
+          <div class="std-header">
+            <span class="std-name">UCP 600</span>
+            <span class="std-badge">Compliant</span>
+          </div>
+          <p class="std-desc">Uniform Customs and Practice for Documentary Credits — the global standard governing Letters of Credit, fully embedded in all LC workflows.</p>
+        </div>
+        <div class="std-card">
+          <div class="std-header">
+            <span class="std-name">URDG 758</span>
+            <span class="std-badge">Compliant</span>
+          </div>
+          <p class="std-desc">Uniform Rules for Demand Guarantees — all Bank Guarantee issuance and claim processing follows ICC URDG 758 guidelines.</p>
+        </div>
+        <div class="std-card">
+          <div class="std-header">
+            <span class="std-name">ISO 27001 & PCI-DSS</span>
+            <span class="std-badge">Certified</span>
+          </div>
+          <p class="std-desc">Information security management and payment card data handling meet international certification standards, ensuring enterprise-grade data protection.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section id="integrations">
+  <div class="sec-label">Integrations</div>
+  <h2 class="sec-title">Connects with your <em>existing stack</em></h2>
+  <div class="int-grid">
+    <div class="int-card">
+      <div class="int-logo">⚡</div>
+      <div class="int-name">SWIFT Network</div>
+      <div class="int-type">MT700 / MT760 / MX</div>
+      <span class="int-status">Live</span>
+    </div>
+    <div class="int-card">
+      <div class="int-logo">🏢</div>
+      <div class="int-name">SAP ERP</div>
+      <div class="int-type">Finance & Procurement</div>
+      <span class="int-status">Live</span>
+    </div>
+    <div class="int-card">
+      <div class="int-logo">🔶</div>
+      <div class="int-name">Oracle Financials</div>
+      <div class="int-type">ERP Integration</div>
+      <span class="int-status">Live</span>
+    </div>
+    <div class="int-card">
+      <div class="int-logo">🏦</div>
+      <div class="int-name">Core Banking</div>
+      <div class="int-type">CBS / Finacle / T24</div>
+      <span class="int-status">Live</span>
+    </div>
+    <div class="int-card">
+      <div class="int-logo">📊</div>
+      <div class="int-name">Bloomberg</div>
+      <div class="int-type">FX Rates & Data</div>
+      <span class="int-status">Live</span>
+    </div>
+    <div class="int-card">
+      <div class="int-logo">🔍</div>
+      <div class="int-name">Refinitiv / LSEG</div>
+      <div class="int-type">Sanctions Screening</div>
+      <span class="int-status">Live</span>
+    </div>
+    <div class="int-card">
+      <div class="int-logo">📧</div>
+      <div class="int-name">Email / SMS</div>
+      <div class="int-type">Notification Gateway</div>
+      <span class="int-status">Live</span>
+    </div>
+    <div class="int-card">
+      <div class="int-logo">☁️</div>
+      <div class="int-name">Cloud Storage</div>
+      <div class="int-type">AWS S3 / Azure Blob</div>
+      <span class="int-status">Live</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="background:var(--navy-card);max-width:none;padding:5rem 4rem;border-top:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="sec-label">Client Feedback</div>
+    <h2 class="sec-title">Trusted by <em>treasury teams</em></h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div>
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">TradeFin cut our LC processing time from 5 days to under 4 hours. The OCR engine alone saves our team 20+ hours a week on document verification.</p>
+        </div>
+        <div class="testi-author">
+          <div class="testi-avatar">RK</div>
+          <div>
+            <div class="testi-name">Rajesh Kumar</div>
+            <div class="testi-role">Head of Treasury, Adani Exports Ltd.</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div>
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">The compliance module is exceptional. Real-time sanctions screening and automated KYC gave our risk team the confidence to scale cross-border trade significantly.</p>
+        </div>
+        <div class="testi-author">
+          <div class="testi-avatar">SP</div>
+          <div>
+            <div class="testi-name">Sunita Patel</div>
+            <div class="testi-role">CFO, Mahindra Global Trade</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div>
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">SWIFT integration and ERP connectivity were seamless. Our finance team now has real-time visibility into every outstanding guarantee and LC from a single dashboard.</p>
+        </div>
+        <div class="testi-author">
+          <div class="testi-avatar">AV</div>
+          <div>
+            <div class="testi-name">Arjun Verma</div>
+            <div class="testi-role">VP Finance, Wipro Infrastructure</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>Ready to <em>transform</em> your trade finance?</h2>
+  <p>Join 340+ corporates managing over $2.4 billion in trade transactions on TradeFin — the most complete digital trade finance portal for corporate banking.</p>
+  <div class="cta-btns">
+    <a href="signup.html" class="btn-s btn-lg">Create Free Account</a>
+    <a href="signin.html" class="btn-o btn-lg">Sign In</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="home.html" class="logo">Trade<span>Fin</span> Portal</a>
+      <p>A secure, end-to-end digital platform for corporate trade finance — connecting businesses, banks, and counterparties across global markets.</p>
+      <div style="display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap">
+        <span class="fpill">UCP 600</span>
+        <span class="fpill">URDG 758</span>
+        <span class="fpill">ISO 27001</span>
+        <span class="fpill">SWIFT</span>
+        <span class="fpill">AML/KYC</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Instruments</h4>
+      <ul>
+        <li><a href="#">Letters of Credit</a></li>
+        <li><a href="#">Bank Guarantees</a></li>
+        <li><a href="#">Documentary Collections</a></li>
+        <li><a href="#">Supply Chain Finance</a></li>
+        <li><a href="#">Import / Export Bills</a></li>
+        <li><a href="#">Trade Loans</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#workflow">Workflow</a></li>
+        <li><a href="#compliance">Compliance</a></li>
+        <li><a href="#integrations">Integrations</a></li>
+        <li><a href="#">API Docs</a></li>
+        <li><a href="#">Security</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Account</h4>
+      <ul>
+        <li><a href="signin.html">Sign In</a></li>
+        <li><a href="signup.html">Register</a></li>
+        <li><a href="#">Support</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025–26 TradeFin Portal · KLH University · FEDF Project Phase 1</span>
+    <div style="display:flex;gap:.5rem">
+      <a href="index.html">index.html</a> ·
+      <a href="signup.html">signup.html</a> ·
+      <a href="signin.html">signin.html</a> ·
+      <a href="home.html">home.html</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mini bar chart
+const mc = document.getElementById('minichart');
+const vals = [38,52,44,68,75,61,84];
+vals.forEach((v,i)=>{
+  const b = document.createElement('div');
+  b.className = 'bar-chart-col' + (i===6?' hi':'');
+  b.style.height = v+'%';
+  mc.appendChild(b);
+});
+
+// Workflow step switcher
+const wvData = [
+  {title:'New LC Application — Tata Steel Ltd.',bars:[{l:'Document Upload',p:20,c:''},{l:'OCR Verification',p:5,c:'blue'},{l:'AML/KYC Screening',p:0,c:''},{l:'RM Approval',p:0,c:''},{l:'SWIFT Issuance',p:0,c:''}],ref:'LC-2024-DRAFT',amt:'$2.4M USD',eta:'~5 hrs'},
+  {title:'OCR Processing — Import Invoice Pack',bars:[{l:'Document Upload',p:100,c:'green'},{l:'OCR Extraction',p:85,c:'blue'},{l:'Discrepancy Check',p:40,c:''},{l:'AML/KYC Screening',p:0,c:''},{l:'SWIFT Issuance',p:0,c:''}],ref:'DOC-2024-0881',amt:'$650K USD',eta:'~3 hrs'},
+  {title:'KYC Screening — New Counterparty',bars:[{l:'Document Upload',p:100,c:'green'},{l:'OCR Extraction',p:100,c:'green'},{l:'Sanctions Screening',p:90,c:'blue'},{l:'RM Approval',p:0,c:''},{l:'SWIFT Issuance',p:0,c:''}],ref:'KYC-2024-0142',amt:'—',eta:'~1 hr'},
+  {title:'LC Approval — Relationship Manager',bars:[{l:'Document Upload',p:100,c:'green'},{l:'OCR Verification',p:100,c:'green'},{l:'KYC Cleared',p:100,c:'green'},{l:'RM Approval',p:75,c:''},{l:'SWIFT Issuance',p:0,c:'blue'}],ref:'LC-2024-00142',amt:'$2.4M USD',eta:'~2 hrs'},
+  {title:'SWIFT MT700 Issuance — Final Stage',bars:[{l:'Document Upload',p:100,c:'green'},{l:'OCR Verification',p:100,c:'green'},{l:'KYC & Compliance',p:100,c:'green'},{l:'RM Approved',p:100,c:'green'},{l:'SWIFT MT700 Sent',p:100,c:'green'}],ref:'LC-2024-00142',amt:'$2.4M USD',eta:'Complete'},
+];
+function setStep(el, idx){
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+  const d = wvData[idx];
+  const wv = document.getElementById('wv');
+  wv.innerHTML = `
+    <div class="wv-title">${d.title}</div>
+    ${d.bars.map(b=>`
+      <div class="progress-item">
+        <div class="progress-label"><span>${b.l}</span><span>${b.p}%</span></div>
+        <div class="progress-track"><div class="progress-fill ${b.c}" style="width:${b.p}%"></div></div>
+      </div>
+    `).join('')}
+    <div class="wv-divider"></div>
+    <div class="wv-meta">
+      <span>Ref: <strong>${d.ref}</strong></span>
+      <span>Amount: <strong>${d.amt}</strong></span>
+      <span>ETA: <strong>${d.eta}</strong></span>
+    </div>
+  `;
+}
+</script>
+</body>
+</html>
